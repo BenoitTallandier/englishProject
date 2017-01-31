@@ -1,0 +1,23 @@
+<?php
+	header('Content-Type: application/json');
+	session_start();
+	include("DBConnection.php");
+
+if(!isset($_GET['id'])){	
+	$r = mysqli_query($db,"SELECT * FROM partie");
+	if($l = mysqli_fetch_array($r)){
+		extract($l);
+		$r1 = mysqli_query($db,"SELECT * FROM resultat WHERE idUser='".$tour."'");
+	}
+}else{
+	$tour = $_GET['id'];
+}
+
+if($l1 = mysqli_fetch_array($r1)){
+	extract($l1);
+	echo json_encode(array('tour' => $tour,'model'=>$model,'proposition'=> $proposition));
+}
+else{
+	echo json_encode(array('tour'=> $tour,'query' => "SELECT * FROM resultat WHERE idUser='".$tour."'"));
+}
+?>
