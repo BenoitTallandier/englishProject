@@ -4,7 +4,6 @@ var session = -1;
 
 $(window).load(function(){
 	session = $('#session').html();
-	
 	$('#word').keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
