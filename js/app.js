@@ -4,6 +4,9 @@ var session = -1;
 
 $(window).load(function(){
 	session = $('#session').html();
+});
+
+$(window).ready(function(){
 	$('#word').keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
@@ -18,6 +21,9 @@ $(window).load(function(){
 							$('#word').css("color","green");
 							//$('#compteur').hide();
 							fini = true;
+							myTour = false;
+							$('#word').val('');
+							$('#word').prop('disabled', true);
 							charge(session);
 						}
 						else{
@@ -37,7 +43,7 @@ $(window).load(function(){
 
 
 
-function time(duree){	
+function time(duree){
 	var compteur=document.getElementById('compteur'+session);
 	s=duree;
 	if(s<0){
@@ -45,12 +51,16 @@ function time(duree){
 		$.ajax({
 					type: 'GET',
 					url: 'checkWord.php',
-					data: "word="
+					data: "timeOut=true"
 		});
+		fini = true;
+		myTour = false;
 		$('#word').animate({"margin-left":20},20,"swing");
 		$('#word').animate({"margin-left":0},20,"swing");
 		$('#word').animate({"margin-left":20},20,"swing");
-		$('#word').animate({"margin-left":0},20,"swing");		
+		$('#word').animate({"margin-left":0},20,"swing");
+		$('#word').css("border-color","red");
+		$('#word').css("color","red");		
 	}
 	else if(fini == false){
 		compteur.innerHTML=s;
@@ -59,7 +69,7 @@ function time(duree){
 	}
 }
 
-function charge(x){
+/*function charge(x){
 	$.ajax({
 		url : "charge.php", // on passe l'id le plus récent au fichier de chargement
 		type : 'GET',
@@ -81,7 +91,7 @@ function charge(x){
 		}
 	});
   
-}
+}*/
 function charger(){
 
     setTimeout( function(){
@@ -90,15 +100,20 @@ function charger(){
             url : "charge.php", // on passe l'id le plus récent au fichier de chargement
             type : 'GET',
             success : function(data){
-				if(!myTour && data.tour==session){
+				if(!myTour && parseInt(data.tour)==parseInt(session)){
 					myTour = true;
 					fini = false;
 					
+					$('#word').prop('disabled', false
 					time(100);
+				}
+				else if(parseInt(data.tour)!=parseInt(session)){
+					//alert("data : "+parseInt(data.tour)+", session :"+parseInt(session));
 				}
 				$('.user').css("border-color","black");
 
 				$('#user'+data.tour).css("border-color","red");
+				$('#model').html(data.model);
                 $('#proposition'+data.tour).html(data.proposition);
 			}
         });

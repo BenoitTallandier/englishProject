@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("DBConnection.php");
+if(isset($_GET['timeOut'])){
+	mysqli_query($db,"UPDATE partie SET tour='".$_SESSION['joueur'][($_SESSION['index']+1)%count($_SESSION['joueur'])]."'");
+	echo "no";
+}
 if(isset($_GET['word'])){
 	mysqli_query($db,"UPDATE resultat SET proposition='".$_GET['word']."' WHERE idUser='".$_SESSION['user']."'");
 	

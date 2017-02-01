@@ -25,17 +25,7 @@
 			<span id='proposition1'></span>
 			<div id="compteur1"></div>
 		</div><br><br>
-		<?php
-			$r = mysqli_query($db,"SELECT * FROM vocabulaire ORDER BY RAND() LIMIT 1");
-			if($l = mysqli_fetch_array($r)){
-				extract($l);
-				$length = strlen($mot);
-				$nb = rand(0,$length-3);
-				$_SESSION['model'] = substr($mot,$nb,3);
-				echo "<span id='model' >".$_SESSION['model']."</span><br>";
-			}
-			
-		?>
+		<div id='model'></div>
 		<!--<img src='img/bomb.png' id='bomb'>-->
 
 		<br><input type='text' id='word' style='border:solid;border-width:1px;border-color:black;'>
