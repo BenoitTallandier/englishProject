@@ -1,12 +1,22 @@
 var fini = false;
 var myTour = false;
 var session = -1;
+var ready = false;
 
 $(window).load(function(){
 	session = $('#session').html();
 });
 
 $(window).ready(function(){
+	$('#buttonReady').click(function(){
+		$.ajax({
+			type : "GET",
+			url : "ready",
+			data : "ready=true"
+		});
+		$('#buttonReady').removeClass('btn-danger');
+		$('#buttonReady').addClass('btn-success');
+	});
 	$('#word').keypress(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
@@ -24,7 +34,8 @@ $(window).ready(function(){
 							myTour = false;
 							$('#word').val('');
 							$('#word').prop('disabled', true);
-							charge(session);
+							//charge(session);
+							$(".progress-bar").css("width", 0 + "%");
 						}
 						else{
 							$('#word').animate({"margin-left":20},20,"swing");
@@ -46,26 +57,30 @@ $(window).ready(function(){
 function time(duree){
 	var compteur=document.getElementById('compteur'+session);
 	s=duree;
-	if(s<0){
-		fini = true;
-		$.ajax({
-					type: 'GET',
-					url: 'checkWord.php',
-					data: "timeOut=true"
-		});
-		fini = true;
-		myTour = false;
-		$('#word').animate({"margin-left":20},20,"swing");
-		$('#word').animate({"margin-left":0},20,"swing");
-		$('#word').animate({"margin-left":20},20,"swing");
-		$('#word').animate({"margin-left":0},20,"swing");
-		$('#word').css("border-color","red");
-		$('#word').css("color","red");		
-	}
-	else if(fini == false){
-		compteur.innerHTML=s;
-		duree=duree-1;
-		window.setTimeout("time("+duree+");",999);
+	if(myTour){
+		if(s<0){
+			fini = true;
+			$.ajax({
+						type: 'GET',
+						url: 'checkWord.php',
+						data: "timeOut=true"
+			});
+			fini = true;
+			myTour = false;
+			$('#word').animate({"margin-left":20},20,"swing");
+			$('#word').animate({"margin-left":0},20,"swing");
+			$('#word').animate({"margin-left":20},20,"swing");
+			$('#word').animate({"margin-left":0},20,"swing");
+			$('#word').css("border-color","red");
+			$('#word').css("color","red");		
+		}
+		else if(fini == false){
+			compteur.innerHTML=Math.floor(s);
+			duree=duree-0.2;
+			 $(".progress-bar").css("width", duree + "%");
+
+			window.setTimeout("time("+duree+");",199);
+		}
 	}
 }
 
@@ -103,16 +118,19 @@ function charger(){
 				if(!myTour && parseInt(data.tour)==parseInt(session)){
 					myTour = true;
 					fini = false;
-					
-					$('#word').prop('disabled', false
+					$.ajax({
+						url : "model.php",
+						type : "GET"
+					})
+					$('#word').prop('disabled', false);
 					time(100);
 				}
 				else if(parseInt(data.tour)!=parseInt(session)){
 					//alert("data : "+parseInt(data.tour)+", session :"+parseInt(session));
 				}
-				$('.user').css("border-color","black");
+				$('.user').html("<img width=100px src='img/user.png'>");
 
-				$('#user'+data.tour).css("border-color","red");
+				$('#user'+data.tour).html("<img width=100px src='img/userRed.png'>");
 				$('#model').html(data.model);
                 $('#proposition'+data.tour).html(data.proposition);
 			}
@@ -120,9 +138,26 @@ function charger(){
         charger();
     }, 100);
 }
+function ready(){
+	while(ready==false){
+		$.ajax({
+			type: 'GET',
+			url: 'ready.php',
+			sucess :function(data){
+				if(data == "true"){
+					alert("all are ready");
+					ready=true;	
+					charger();
+				}
+				else{
+					ready();
+				}
+			}
+		});	
+	}
+}
 
-
-charger();
+ready();
 
 
 
