@@ -2,11 +2,11 @@
 <?php
 	session_start();
 	include("DBConnection.php");
-	$_SESSION['user']=rand	(0,1);
+	mysqli_query($db,"INSERT INTO user (name,ready,proposition,model) VALUES ('titi',0,'','')");
+	$_SESSION['user'] = mysqli_insert_id($db);
 	echo "<div id='session'>".$_SESSION['user']."</div>";
-	$_SESSION['joueur'] = Array(0,1);
-	$_SESSION['index'] = $_SESSION['user'];
-
+	$_SESSION['joueur'] = []; // MAJ dans chargeUser
+	$_SESSION['index'] = 0; //MAJ dans chargeUser
 ?>
 <html>
 	<head>
@@ -15,7 +15,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/theme.css" rel="stylesheet">
-		<script type="text/javascript" src='js/app.js'></script>	
+		<script type="text/javascript" src='js/app.js'></script>
 	</head>
 	<body>
 		<div class="container" >
@@ -33,23 +33,9 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12 col-centered">
-					<div class='row'>					
+					<div class='row'>
 						<div class="col-sm-4 col-sm-offset-4 col-centered">
-							<div style='display:inline-block;margin:20px;'>
-								<div id='user0' class='user'>
-									<div id='name0'></div>
-									<img  width=100px src='img/user.png'>
-								</div>
-								<div id='proposition0'></div>
-								<div id="compteur0"></div>
-							</div>
-							<div style='display:inline-block;'>
-								<div id='user1' class='user'>
-									<div id='name1'></div>
-									<img  width=100px src='img/user.png'>
-								</div>
-								<div id='proposition1'></div>
-								<div id="compteur1"></div>
+							<div id='blockUser' style='display:inline-block;margin:20px;'>
 							</div>
 						</div>
 					</div>
@@ -61,8 +47,8 @@
 							<!--<img src='img/bomb.png' id='bomb'>-->
 
 							<div class='item'>
-								<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">								
-							</div>	
+								<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -77,7 +63,7 @@
 					<input type="password" name="pass" placeholder="Password">
 					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
 				  </form>
-					
+
 				  <div class="login-help">
 					<a href="#">Register</a> - <a href="#">Forgot Password</a>
 				  </div>

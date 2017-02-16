@@ -1,7 +1,7 @@
 var fini = false;
 var myTour = false;
 var session = -1;
-var ready = false;
+
 
 $(window).load(function(){
 	session = $('#session').html();
@@ -17,7 +17,7 @@ $(window).ready(function(){
 		$('#buttonReady').removeClass('btn-danger');
 		$('#buttonReady').addClass('btn-success');
 	});
-	$('#word').keypress(function(event){
+	$('#word').keyup(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == '13'){
 			if( fini==false ){
@@ -49,6 +49,13 @@ $(window).ready(function(){
 				});
 			}
 		}
+		else{
+			$.ajax({
+				type: 'GET',
+				url: 'checkWord.php',
+				data: "wordW="+$('#word').val()
+			});
+		}
 	});
 });
 
@@ -72,10 +79,10 @@ function time(duree){
 			$('#word').animate({"margin-left":20},20,"swing");
 			$('#word').animate({"margin-left":0},20,"swing");
 			$('#word').css("border-color","red");
-			$('#word').css("color","red");		
+			$('#word').css("color","red");
 		}
 		else if(fini == false){
-			compteur.innerHTML=Math.floor(s);
+			//compteur.innerHTML=Math.floor(s);
 			duree=duree-0.2;
 			 $(".progress-bar").css("width", duree + "%");
 
@@ -105,7 +112,7 @@ function time(duree){
 			$('#proposition'+data.tour).html(data.proposition);
 		}
 	});
-  
+
 }*/
 function charger(){
 
@@ -128,36 +135,46 @@ function charger(){
 				else if(parseInt(data.tour)!=parseInt(session)){
 					//alert("data : "+parseInt(data.tour)+", session :"+parseInt(session));
 				}
-				$('.user').html("<img width=100px src='img/user.png'>");
+				//$('.user').html("<img width=100px src='img/user.png'>");
 
-				$('#user'+data.tour).html("<img width=100px src='img/userRed.png'>");
+				//$('#user'+data.tour).html("<img width=100px src='img/userRed.png'>");
 				$('#model').html(data.model);
-                $('#proposition'+data.tour).html(data.proposition);
+                //$('#proposition'+data.tour).html(data.proposition);
 			}
+        });
+        $.ajax({
+        	url : "chargeUser.php",
+        	type : "GET",
+        	success : function(data){
+        		if(data != $('#blockUser').html()){
+        			$('#blockUser').html(data);
+        		}
+        	}
         });
         charger();
     }, 100);
 }
-function ready(){
-	while(ready==false){
-		$.ajax({
-			type: 'GET',
-			url: 'ready.php',
-			sucess :function(data){
+
+function pret(){
+	var p=false;
+	var x="aze";
+    setTimeout( function(){
+    	$.ajax({
+            url : "ready.php", // on passe l'id le plus récent au fichier de chargement
+            type : 'GET',
+            success : function(data){
 				if(data == "true"){
-					alert("all are ready");
-					ready=true;	
 					charger();
 				}
 				else{
-					ready();
+					pret();
 				}
 			}
-		});	
-	}
+		});
+	},100);
 }
 
-ready();
+pret();
 
 
 
@@ -182,3 +199,8 @@ function sleep(milliseconds) {
     }
   }
 }*/
+
+$(window).bind("beforeunload", function(){
+		$(window).load("checkWord.php?timeOut=true");
+		$(window).load("dec.php");
+});

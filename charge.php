@@ -11,7 +11,7 @@ if(!isset($_GET['id'])){
 }else{
 	$tour = $_GET['id'];
 }
-$r1 = mysqli_query($db,"SELECT * FROM resultat WHERE idUser='".$tour."'");
+$r1 = mysqli_query($db,"SELECT * FROM user WHERE idUser='".$tour."'");
 if($l1 = mysqli_fetch_array($r1)){
 	extract($l1);
 	echo json_encode(array('tour' => $tour,'model'=>$model,'proposition'=> $proposition));

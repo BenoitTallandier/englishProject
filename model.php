@@ -8,7 +8,7 @@
 		$length = strlen($mot);
 		$nb = rand(0,$length-3);
 		$_SESSION['model'] = substr($mot,$nb,3);
-		$query = "UPDATE resultat SET model='".$_SESSION['model']."' WHERE idUser='".$_SESSION['user']."'";
+		$query = "UPDATE user SET model='".$_SESSION['model']."' WHERE idUser='".$_SESSION['user']."'";
 		mysqli_query($db,$query);
 		echo $query;
 	}
