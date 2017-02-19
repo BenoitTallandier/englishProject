@@ -12,7 +12,8 @@
 		}
 	}
 	else{
-		$query = "UPDATE user SET ready=1 WHERE idUser='".$_SESSION['user']."'";
+		$_SESSION['pseudo'] = $_GET['pseudo'];
+		$query = "UPDATE user SET ready=1,name='".$_GET['pseudo']."' WHERE idUser='".$_SESSION['user']."'";
 		mysqli_query($db,$query);
 		echo $query;
 	}

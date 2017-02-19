@@ -4,34 +4,56 @@
 	include("DBConnection.php");
 	mysqli_query($db,"INSERT INTO user (name,ready,proposition,model) VALUES ('titi',0,'','')");
 	$_SESSION['user'] = mysqli_insert_id($db);
+	$_SESSION['pseudo'] = "";
 	echo "<div id='session'>".$_SESSION['user']."</div>";
-	$_SESSION['joueur'] = []; // MAJ dans chargeUser
+	$_SESSION['joueur'] = []; // MAJ dans charge
 	$_SESSION['index'] = 0; //MAJ dans chargeUser
 ?>
 <html>
 	<head>
 		<title>TicTac</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/theme.css" rel="stylesheet">
 		<script type="text/javascript" src='js/app.js'></script>
 	</head>
 	<body>
 		<div class="container" >
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2 col-centered">
-					<button id="buttonReady" type="button" class="btn btn-danger">Ready</button>
+			<div class="row startRow" >
+				<!-- Button trigger modal -->
+				<div class="col-sm-2 col-sm-offset-6 col-centered">
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+						Start
+					<button>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+				    	<div class="modal-content">
+				      		<div class="modal-body">
+								<form method='POST'>
+									<label for="recipient-name" class="control-label">nickname:</label>
+									<input type='text' id='inputPseudo' class="form-control" placeholder="NickName">
+								</form>
+				      		</div>
+				      		<div class="modal-footer">
+				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        		<button type="button" id="buttonReady" class="btn btn-primary">Ready</button>
+				      		</div>
+				    	</div>
+				  	</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row playRow">
 				<div class="col-sm-8 col-sm-offset-2 col-centered">
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row playRow">
 				<div class="col-sm-12 col-centered">
 					<div class='row'>
 						<div class="col-sm-4 col-sm-offset-4 col-centered">
@@ -53,24 +75,6 @@
 					</div>
 				</div>
 			</div>
-		<!--modal-->
-		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Login to Your Account</h1><br>
-				  <form>
-					<input type="text" name="user" placeholder="Username">
-					<input type="password" name="pass" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
-				  </form>
-
-				  <div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password</a>
-				  </div>
-				</div>
-			</div>
-		  </div>
-		<!--modal-->
 		</div>
 
 	</body>

@@ -5,17 +5,22 @@ var session = -1;
 
 $(window).load(function(){
 	session = $('#session').html();
+	$('.startRow').show();
+	$('.playRow').hide();
 });
 
 $(window).ready(function(){
+	$('.startRow').show();
+	$('.playRow').hide();
 	$('#buttonReady').click(function(){
 		$.ajax({
 			type : "GET",
 			url : "ready",
-			data : "ready=true"
+			data : "ready=true&pseudo="+$('#inputPseudo').val()
 		});
-		$('#buttonReady').removeClass('btn-danger');
-		$('#buttonReady').addClass('btn-success');
+		$('.startRow').hide();
+		$('.playRow').show();
+		$('#myModal').modal('toggle');
 	});
 	$('#word').keyup(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
