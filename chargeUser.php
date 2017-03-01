@@ -7,13 +7,14 @@
 
 	$_SESSION['joueur'] = [];
 	$compteur = 0;
+	echo $_SESSION['init']."<br>";
 	if($r){
 		while($l = mysqli_fetch_array($r)){
 			extract($l);
 			array_push($_SESSION['joueur'],$idUser);
 			if($idUser == $_SESSION['user']){
 				$_SESSION['index'] = $compteur;
-				if($compteur == 0 && $tour<$idUser){//cas d'initialisation
+				if($compteur == 0 && $tour<$idUser && $_SESSION['init']==0){//cas d'initialisation
 					mysqli_query($db,"UPDATE partie SET tour='".$idUser."'");
 				}
 			}

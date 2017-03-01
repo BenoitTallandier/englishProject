@@ -2,12 +2,14 @@
 <?php
 	session_start();
 	include("DBConnection.php");
-	mysqli_query($db,"INSERT INTO user (name,ready,proposition,model) VALUES ('titi',0,'','')");
-	$_SESSION['user'] = mysqli_insert_id($db);
-	$_SESSION['pseudo'] = "";
-	echo "<div id='session'>".$_SESSION['user']."</div>";
-	$_SESSION['joueur'] = []; // MAJ dans charge
-	$_SESSION['index'] = 0; //MAJ dans chargeUser
+		mysqli_query($db,"INSERT INTO user (name,ready,proposition,model) VALUES ('titi',0,'','')");
+		$_SESSION['user'] = mysqli_insert_id($db);
+		$_SESSION['pseudo'] = "";
+		echo "<div id='session'>".$_SESSION['user']."</div>";
+		$_SESSION['joueur'] = []; // MAJ dans charge
+		$_SESSION['index'] = 0; //MAJ dans chargeUser
+		$_SESSION['init'] = 0;
+		echo "init : ".$_SESSION['init'];
 ?>
 <html>
 	<head>
@@ -33,10 +35,8 @@
 					<div class="modal-dialog" role="document">
 				    	<div class="modal-content">
 				      		<div class="modal-body">
-								<form method='POST'>
-									<label for="recipient-name" class="control-label">nickname:</label>
-									<input type='text' id='inputPseudo' class="form-control" placeholder="NickName">
-								</form>
+								<label for="recipient-name" class="control-label">nickname:</label>
+								<input type='text' id='inputPseudo' class="form-control" placeholder="NickName">
 				      		</div>
 				      		<div class="modal-footer">
 				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

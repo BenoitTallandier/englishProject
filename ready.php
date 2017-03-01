@@ -8,6 +8,7 @@
 			echo "false";
 		}
 		else{
+			$_SESSION['init']=1;
 			echo "true";
 		}
 	}

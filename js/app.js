@@ -15,12 +15,26 @@ $(window).ready(function(){
 	$('#buttonReady').click(function(){
 		$.ajax({
 			type : "GET",
-			url : "ready",
-			data : "ready=true&pseudo="+$('#inputPseudo').val()
+			url : "ready.php",
+			data : "ready=true&pseudo="+$('#inputPseudo').val(),
 		});
 		$('.startRow').hide();
 		$('.playRow').show();
 		$('#myModal').modal('toggle');
+	});
+
+	$('#inputPseudo').keyup(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			$.ajax({
+				type : "GET",
+				url : "ready.php",
+				data : "ready=true&pseudo="+$('#inputPseudo').val(),
+			});
+			$('.startRow').hide();
+			$('.playRow').show();
+			$('#myModal').modal('toggle');
+		}
 	});
 	$('#word').keyup(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -175,6 +189,10 @@ function pret(){
 					pret();
 				}
 			}
+		});
+		$.ajax({
+			url : "chargeUser.php",
+			type : "GET"
 		});
 	},100);
 }
