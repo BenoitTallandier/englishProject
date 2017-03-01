@@ -26,7 +26,7 @@
 				<div class="col-sm-2 col-sm-offset-6 col-centered">
 					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 						Start
-					<button>
+					</button>
 				</div>
 				<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
