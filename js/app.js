@@ -74,13 +74,13 @@ $(window).ready(function(){
 				});
 			}
 		}
-		else{
+		/*else{
 			$.ajax({
 				type: 'GET',
 				url: 'checkWord.php',
 				data: "wordW="+$('#word').val()
 			});
-		}
+		}*/
 	});
 });
 
@@ -223,7 +223,7 @@ function charger(){
         	}
         });
         charger();
-    }, 100);
+    }, 500);
 }
 
 function pret(){
@@ -246,7 +246,7 @@ function pret(){
 			url : "chargeUser.php",
 			type : "GET"
 		});
-	},100);
+	},500);
 }
 
 pret();
