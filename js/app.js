@@ -7,7 +7,6 @@ $(window).load(function(){
 	session = $('#session').html();
 	$('.startRow').show();
 	$('.playRow').hide();
-	$("#closeAlert").click();
 	var sze = $(window).height()*0.3;
 	$(".vide").css("height",sze+"px");
 });
@@ -25,6 +24,10 @@ $(window).ready(function(){
 		$('.playRow').show();
 		$('#myModal').modal('toggle');
 	});
+
+
+	pret();
+
 
 	$('#inputPseudo').keyup(function(event){
 		var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -96,7 +99,8 @@ function time(duree){
 						data: "timeOut=true",
 						success : function(data){
 							if(data=="out"){
-								$('#loose').modal('toggle');
+								alert("out");
+								$('#looseModal').modal('toggle');
 								session=-1;
 							}
 						}
@@ -245,10 +249,6 @@ function pret(){
 		});
 	},500);
 }
-
-pret();
-
-
 
 
 /*

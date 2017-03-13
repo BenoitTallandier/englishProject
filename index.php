@@ -15,8 +15,8 @@
 		<title>TicTac</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="css/theme.css" rel="stylesheet">
 		<script type="text/javascript" src='js/app.js'></script>
 	</head>
@@ -47,19 +47,19 @@
 				  	</div>
 				</div>
 			</div>
-			<div class="modal fade danger " id="loose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-body">
-							<strong>Error!</strong> You loose this game
+			<div class="row playRow">
+				<div class="modal fade" id="looseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog danger" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<strong>Error!</strong> You loose this game
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
 				</div>
-			</div>
-			<div class="row playRow">
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
 				    	<div class="modal-content">
