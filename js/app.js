@@ -56,11 +56,6 @@ $(window).ready(function(){
 							$('#word').prop('disabled', true);
 							//charge(session);
 							$(".progress-bar").css("width", 0 + "%");
-							$(".progress-bar").removeClass("progress-bar-success");
-							$(".progress-bar").removeClass("progress-bar-danger");
-							$(".progress-bar").removeClass("progress-bar-warning");
-							$(".progress-bar").addClass("progress-bar-infos");
-
 						}
 						else{
 							$('#word').animate({"margin-left":20},20,"swing");
@@ -89,7 +84,7 @@ $(window).ready(function(){
 function time(duree){
 	var compteur=document.getElementById('compteur'+session);
 	s=duree;
-	var base = 100;
+	var base = 200;
 	if(myTour){
 		if(s<0){
 			fini = true;
@@ -99,8 +94,8 @@ function time(duree){
 						data: "timeOut=true",
 						success : function(data){
 							if(data=="out"){
-								session=-1;
 								$('#loose').modal('toggle');
+								session=-1;
 							}
 						}
 
@@ -117,7 +112,7 @@ function time(duree){
 		}
 		else if(fini == false){
 			//compteur.innerHTML=Math.floor(s);
-			duree=duree-2;
+			duree=duree-5;
 			if(duree >= 0.5*base){
 				if( ! $(".progress-bar").hasClass("progress-bar-succes") ){
 					$(".progress-bar").addClass("progress-bar-success");
@@ -142,14 +137,14 @@ function time(duree){
 					$(".progress-bar").removeClass("progress-bar-infos");
 				}
 			}
-			 $(".progress-bar").css("width", duree + "%");
+			 $(".progress-bar").css("width", duree/2 + "%");
 			 $.ajax({
 				 type : 'GET',
 				 url : 'setTime.php',
 				 data : 'time='+duree
 			 });
 			if(session != -1){
-				window.setTimeout("time("+duree+");",199);
+				window.setTimeout("time("+duree+");",499);
 			}
 		}
 	}
@@ -199,7 +194,7 @@ function charger(){
 						url: 'checkWord.php',
 						data: "wordW="
 					});
-					time(100);
+					time(200);
 				}
 				else if(parseInt(data.tour)!=parseInt(session)){
 					if( ! $(".progress-bar").hasClass("progress-bar-infos") ){
@@ -208,9 +203,9 @@ function charger(){
 						$(".progress-bar").removeClass("progress-bar-warning");
 						$(".progress-bar").addClass("progress-bar-infos");
 					}
-					$(".progress-bar").css("width", data.time + "%");
-					$('#model').html(data.model);
+					$(".progress-bar").css("width", data.time/2 + "%");
 				}
+				$('#model').html(data.model);
 			}
         });
         $.ajax({
