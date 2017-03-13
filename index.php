@@ -9,7 +9,6 @@
 		$_SESSION['joueur'] = []; // MAJ dans charge
 		$_SESSION['index'] = 0; //MAJ dans chargeUser
 		$_SESSION['init'] = 0;
-		echo "init : ".$_SESSION['init'];
 ?>
 <html>
 	<head>
