@@ -2,7 +2,7 @@
 <?php
 	session_start();
 	include("DBConnection.php");
-		mysqli_query($db,"INSERT INTO user (name,ready,proposition,model) VALUES ('titi',0,'','')");
+		mysqli_query($db,"INSERT INTO user (name,ready,proposition,model,life) VALUES ('titi',0,'','',3)");
 		$_SESSION['user'] = mysqli_insert_id($db);
 		$_SESSION['pseudo'] = "";
 		echo "<div id='session'>".$_SESSION['user']."</div>";
@@ -15,13 +15,19 @@
 	<head>
 		<title>TicTac</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/theme.css" rel="stylesheet">
 		<script type="text/javascript" src='js/app.js'></script>
 	</head>
 	<body>
+
+		<div id='loose' class="alert alert-danger fade in">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<strong>Error!</strong> You loose this game
+		</div>
+
 		<div class="container" >
 			<div class="row startRow" >
 				<!-- Button trigger modal -->
@@ -47,6 +53,20 @@
 				</div>
 			</div>
 			<div class="row playRow">
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+				    	<div class="modal-content">
+				      		<div class="modal-body">
+								<label for="recipient-name" class="control-label">nickname:</label>
+								<input type='text' id='inputPseudo' class="form-control" placeholder="NickName">
+				      		</div>
+				      		<div class="modal-footer">
+				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        		<button type="button" id="buttonReady" class="btn btn-primary">Ready</button>
+				      		</div>
+				    	</div>
+				  	</div>
+				</div>
 				<div class="col-sm-8 col-sm-offset-2 col-centered">
 					<div class="progress">
 						<div class="progress-bar"></div>
@@ -61,7 +81,7 @@
 							</div>
 						</div>
 					</div>
-					<div class='row'>
+					<div class='row' style='margin-top:30px;'>
 						<div class="col-sm-3 col-centered">
 							<div class='item'>
 								<div id='model'></div>

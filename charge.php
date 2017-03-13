@@ -3,7 +3,7 @@
 	session_start();
 	include("DBConnection.php");
 
-if(!isset($_GET['id'])){	
+if(!isset($_GET['id'])){
 	$r = mysqli_query($db,"SELECT * FROM partie");
 	if($l = mysqli_fetch_array($r)){
 		extract($l);
@@ -14,7 +14,7 @@ if(!isset($_GET['id'])){
 $r1 = mysqli_query($db,"SELECT * FROM user WHERE idUser='".$tour."'");
 if($l1 = mysqli_fetch_array($r1)){
 	extract($l1);
-	echo json_encode(array('tour' => $tour,'model'=>$model,'proposition'=> $proposition));
+	echo json_encode(array('tour' => $tour,'model'=>$model,'proposition'=> $proposition,'time'=> $time));
 	//$_SESSION['model']=$model;
 }
 else{

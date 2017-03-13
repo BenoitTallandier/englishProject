@@ -55,6 +55,11 @@ $(window).ready(function(){
 							$('#word').prop('disabled', true);
 							//charge(session);
 							$(".progress-bar").css("width", 0 + "%");
+							$(".progress-bar").removeClass("progress-bar-success");
+							$(".progress-bar").removeClass("progress-bar-danger");
+							$(".progress-bar").removeClass("progress-bar-warning");
+							$(".progress-bar").addClass("progress-bar-infos");
+
 						}
 						else{
 							$('#word').animate({"margin-left":20},20,"swing");
@@ -83,13 +88,18 @@ $(window).ready(function(){
 function time(duree){
 	var compteur=document.getElementById('compteur'+session);
 	s=duree;
+	var base = 100;
 	if(myTour){
 		if(s<0){
 			fini = true;
 			$.ajax({
 						type: 'GET',
 						url: 'checkWord.php',
-						data: "timeOut=true"
+						data: "timeOut=true",
+						success : function(){
+							$('#loose').alert();
+						}
+
 			});
 			fini = true;
 			myTour = false;
@@ -99,11 +109,29 @@ function time(duree){
 			$('#word').animate({"margin-left":0},20,"swing");
 			$('#word').css("border-color","red");
 			$('#word').css("color","red");
+
 		}
 		else if(fini == false){
 			//compteur.innerHTML=Math.floor(s);
 			duree=duree-0.2;
+			if(duree >= 0.5*base){
+				$(".progress-bar").addClass("progress-bar-success");
+			}
+			else if(duree>=0.2*base){
+				$(".progress-bar").removeClass("progress-bar-success");
+				$(".progress-bar").addClass("progress-bar-warning");
+			}
+			else if(duree >= 0){
+				$(".progress-bar").removeClass("progress-bar-warning");
+				$(".progress-bar").addClass("progress-bar-danger");
+			}
+
 			 $(".progress-bar").css("width", duree + "%");
+			 $.ajax({
+				 type : 'GET',
+				 url : 'setTime.php',
+				 data : 'time='+duree
+			 });	
 
 			window.setTimeout("time("+duree+");",199);
 		}
@@ -149,16 +177,23 @@ function charger(){
 						type : "GET"
 					})
 					$('#word').prop('disabled', false);
+					$.ajax({
+						type: 'GET',
+						url: 'checkWord.php',
+						data: "wordW="
+					});
 					time(100);
 				}
 				else if(parseInt(data.tour)!=parseInt(session)){
-					//alert("data : "+parseInt(data.tour)+", session :"+parseInt(session));
 				}
-				//$('.user').html("<img width=100px src='img/user.png'>");
-
-				//$('#user'+data.tour).html("<img width=100px src='img/userRed.png'>");
+				if( ! $(".progress-bar").hasClass("progress-bar-infos") ){
+					$(".progress-bar").removeClass("progress-bar-success");
+					$(".progress-bar").removeClass("progress-bar-danger");
+					$(".progress-bar").removeClass("progress-bar-warning");
+					$(".progress-bar").addClass("progress-bar-infos");
+				}
+				$(".progress-bar").css("width", data.time + "%");
 				$('#model').html(data.model);
-                //$('#proposition'+data.tour).html(data.proposition);
 			}
         });
         $.ajax({

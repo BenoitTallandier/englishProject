@@ -1,5 +1,5 @@
 body{
-	background-color : #88AA88;
+	background-color : #CCCCFF;
 }
 
 .col-centered{
@@ -7,7 +7,10 @@ body{
 	margin: 0 auto;
 }
 
-
+.user{
+	font-size: 20px;
+	font-weight: bold;
+}
 
 /** modal **/
 @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -77,7 +80,7 @@ body{
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -101,7 +104,7 @@ body{
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
