@@ -24,7 +24,7 @@
 	<body>
 
 		<div id='loose' class="alert alert-danger fade in">
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<a href="#" id="closeAlert" class="close" data-dismiss="alert">&times;</a>
 			<strong>Error!</strong> You loose this game
 		</div>
 

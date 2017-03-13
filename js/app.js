@@ -7,6 +7,7 @@ $(window).load(function(){
 	session = $('#session').html();
 	$('.startRow').show();
 	$('.playRow').hide();
+	$("#closeAlert").click();
 });
 
 $(window).ready(function(){
@@ -88,7 +89,7 @@ $(window).ready(function(){
 function time(duree){
 	var compteur=document.getElementById('compteur'+session);
 	s=duree;
-	var base = 100;
+	var base = 10;
 	if(myTour){
 		if(s<0){
 			fini = true;
@@ -131,7 +132,7 @@ function time(duree){
 				 type : 'GET',
 				 url : 'setTime.php',
 				 data : 'time='+duree
-			 });	
+			 });
 
 			window.setTimeout("time("+duree+");",199);
 		}
@@ -182,7 +183,7 @@ function charger(){
 						url: 'checkWord.php',
 						data: "wordW="
 					});
-					time(100);
+					time(10);
 				}
 				else if(parseInt(data.tour)!=parseInt(session)){
 				}
