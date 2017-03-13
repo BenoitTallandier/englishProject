@@ -22,9 +22,6 @@
 		<script type="text/javascript" src='js/app.js'></script>
 	</head>
 	<body>
-
-
-
 		<div class="container" >
 			<div class="row startRow" >
 				<!-- Button trigger modal -->
@@ -53,22 +50,13 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-body">
-								<strong>Error!</strong> You loose this game
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<strong>Error!</strong> You loose this game
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
-			</div>
-		</div>
-
-
-
-			<div id='loose' class="alert alert-danger fade in">
-				<a href="#" id="closeAlert" class="close" data-dismiss="alert">&times;</a>
-				<strong>Error!</strong> You loose this game
 			</div>
 			<div class="row playRow">
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -92,6 +80,16 @@
 				</div>
 			</div>
 			<div class="row playRow">
+				<div class='row' style='margin-top:30px;'>
+					<div class="col-sm-3 col-centered">
+						<div class='item'>
+							You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
+						</div>
+						<div class='item'>
+							<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
+						</div>
+					</div>
+				</div>
 				<div class="col-sm-12 col-centered">
 					<div class='row'>
 						<div class="col-sm-4 col-sm-offset-4 col-centered">
@@ -99,21 +97,8 @@
 							</div>
 						</div>
 					</div>
-					<div class='row' style='margin-top:30px;'>
-						<div class="col-sm-3 col-centered">
-							<div class='item'>
-								You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
-							</div>
-							<!--<img src='img/bomb.png' id='bomb'>-->
-
-							<div class='item'>
-								<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-
 	</body>
 </html>

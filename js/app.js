@@ -119,15 +119,28 @@ function time(duree){
 			//compteur.innerHTML=Math.floor(s);
 			duree=duree-2;
 			if(duree >= 0.5*base){
-				$(".progress-bar").addClass("progress-bar-success");
+				if( ! $(".progress-bar").hasClass("progress-bar-succes") ){
+					$(".progress-bar").addClass("progress-bar-success");
+					$(".progress-bar").removeClass("progress-bar-danger");
+					$(".progress-bar").removeClass("progress-bar-warning");
+					$(".progress-bar").removeClass("progress-bar-infos");
+				}
 			}
 			else if(duree>=0.2*base){
-				$(".progress-bar").removeClass("progress-bar-success");
-				$(".progress-bar").addClass("progress-bar-warning");
+				if( ! $(".progress-bar").hasClass("progress-bar-warning") ){
+					$(".progress-bar").removeClass("progress-bar-success");
+					$(".progress-bar").removeClass("progress-bar-danger");
+					$(".progress-bar").addClass("progress-bar-warning");
+					$(".progress-bar").removeClass("progress-bar-infos");
+				}
 			}
 			else if(duree >= 0){
-				$(".progress-bar").removeClass("progress-bar-warning");
-				$(".progress-bar").addClass("progress-bar-danger");
+				if( ! $(".progress-bar").hasClass("progress-bar-danger") ){
+					$(".progress-bar").removeClass("progress-bar-success");
+					$(".progress-bar").addClass("progress-bar-danger");
+					$(".progress-bar").removeClass("progress-bar-warning");
+					$(".progress-bar").removeClass("progress-bar-infos");
+				}
 			}
 			 $(".progress-bar").css("width", duree + "%");
 			 $.ajax({
@@ -189,15 +202,15 @@ function charger(){
 					time(100);
 				}
 				else if(parseInt(data.tour)!=parseInt(session)){
+					if( ! $(".progress-bar").hasClass("progress-bar-infos") ){
+						$(".progress-bar").removeClass("progress-bar-success");
+						$(".progress-bar").removeClass("progress-bar-danger");
+						$(".progress-bar").removeClass("progress-bar-warning");
+						$(".progress-bar").addClass("progress-bar-infos");
+					}
+					$(".progress-bar").css("width", data.time + "%");
+					$('#model').html(data.model);
 				}
-				if( ! $(".progress-bar").hasClass("progress-bar-infos") ){
-					$(".progress-bar").removeClass("progress-bar-success");
-					$(".progress-bar").removeClass("progress-bar-danger");
-					$(".progress-bar").removeClass("progress-bar-warning");
-					$(".progress-bar").addClass("progress-bar-infos");
-				}
-				$(".progress-bar").css("width", data.time + "%");
-				$('#model').html(data.model);
 			}
         });
         $.ajax({
