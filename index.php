@@ -22,6 +22,8 @@
 	</head>
 	<body>
 		<div class="container" >
+			<div class="row startRow vide">
+			</div>
 			<div class="row startRow" >
 				<!-- Button trigger modal -->
 				<div class="col-sm-2 col-sm-offset-6 col-centered">

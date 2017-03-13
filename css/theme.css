@@ -1,7 +1,14 @@
 body{
 	background-color : #CCCCFF;
 }
-
+.container{
+	background-color: #FFFFFF;
+	padding : 30px;
+	min-height: 600px;
+}
+.vide{
+	height : 200px;
+}
 .col-centered{
 	float: none;
 	margin: 0 auto;

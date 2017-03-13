@@ -8,6 +8,8 @@ $(window).load(function(){
 	$('.startRow').show();
 	$('.playRow').hide();
 	$("#closeAlert").click();
+	var sze = $(window).height()*0.3;
+	$(".vide").css("height",sze+"px");
 });
 
 $(window).ready(function(){
