@@ -23,10 +23,7 @@
 	</head>
 	<body>
 
-		<div id='loose' class="alert alert-danger fade in">
-			<a href="#" id="closeAlert" class="close" data-dismiss="alert">&times;</a>
-			<strong>Error!</strong> You loose this game
-		</div>
+
 
 		<div class="container" >
 			<div class="row startRow" >
@@ -52,6 +49,27 @@
 				  	</div>
 				</div>
 			</div>
+			<div class="modal fade alert-danger " id="loose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+								<strong>Error!</strong> You loose this game
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+			<div id='loose' class="alert alert-danger fade in">
+				<a href="#" id="closeAlert" class="close" data-dismiss="alert">&times;</a>
+				<strong>Error!</strong> You loose this game
+			</div>
 			<div class="row playRow">
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
@@ -67,7 +85,7 @@
 				    	</div>
 				  	</div>
 				</div>
-				<div class="col-sm-8 col-sm-offset-2 col-centered">
+				<div class="col-sm-4 col-sm-offset-4 col-centered">
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
@@ -84,7 +102,7 @@
 					<div class='row' style='margin-top:30px;'>
 						<div class="col-sm-3 col-centered">
 							<div class='item'>
-								<div id='model'></div>
+								You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
 							</div>
 							<!--<img src='img/bomb.png' id='bomb'>-->
 

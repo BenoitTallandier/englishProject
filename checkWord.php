@@ -11,7 +11,7 @@ if(isset($_GET['timeOut'])){
 		mysqli_query($db,"UPDATE user SET life=".$life." WHERE idUser=".$_SESSION['user']);
 	}
 	else{
-		mysqli_query($db,"DELETE * FROM user WHERE idUser=".$_SESSION['user']);
+		mysqli_query($db,"DELETE FROM user WHERE idUser=".$_SESSION['user']);
 		echo "out";
 	}
 	mysqli_query($db,"UPDATE partie SET tour='".$_SESSION['joueur'][($_SESSION['index']+1)%count($_SESSION['joueur'])]."'");

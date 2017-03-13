@@ -30,7 +30,7 @@
 						echo "<img  width=100px src='img/user.png'>";
 					}
 					echo"<span>";
-						echo "<i class='glyphicon glyphicon-heart' aria-hidden='true'>&times;".$life."</i>";
+						echo "<i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:red;'>&times;".$life."</i>";
 					echo "</span>";
 				echo"</div>
 			<div id='proposition".$idUser."'>".$proposition."</div>
