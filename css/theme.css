@@ -116,3 +116,6 @@ body{
 .login-help{
   font-size: 12px;
 }
+.spaceRow{
+	min-height:100px;
+}

@@ -1,0 +1,16 @@
+<HTML>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+        setTimeout( function(){
+                $.ajax({
+                    url : "cheat.php",
+                    type : "GET",
+                    success : function(data){
+                        $('#cheat').html(data);
+                    }
+                });
+            },1000);
+        </script>
+        <div id='cheat'>
+        </div>
+</HTML>

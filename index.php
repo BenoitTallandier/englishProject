@@ -80,25 +80,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="row playRow">
-				<div class='row' style='margin-top:30px;'>
-					<div class="col-sm-3 col-centered">
-						<div class='item'>
-							You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
-						</div>
-						<div class='item'>
-							<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
-						</div>
+			<div class="row playRow" style='margin-top:30px;'>
+				<div class="col-sm-3 col-centered whenuplay">
+					<div class='item'>
+						You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
+					</div>
+					<div class='item'>
+						<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
 					</div>
 				</div>
-				<div class="col-sm-12 col-centered">
-					<div class='row'>
-						<div class="col-sm-4 col-sm-offset-4 col-centered">
-							<div id='blockUser' style='display:inline-block;margin:20px;'>
-							</div>
-						</div>
-					</div>
-				</div>
+			</div>
+			<div  id='blockUser' class='row playRow'>
+			</div>
 			</div>
 		</div>
 	</body>

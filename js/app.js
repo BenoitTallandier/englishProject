@@ -9,6 +9,7 @@ $(window).load(function(){
 	$('.playRow').hide();
 	var sze = $(window).height()*0.3;
 	$(".vide").css("height",sze+"px");
+	$('.whenuplay').hide();
 });
 
 $(window).ready(function(){
@@ -57,6 +58,7 @@ $(window).ready(function(){
 							//$('#compteur').hide();
 							fini = true;
 							myTour = false;
+							$('.whenuplay').hide();
 							$('#word').val('');
 							$('#word').prop('disabled', true);
 							//charge(session);
@@ -93,6 +95,7 @@ function time(duree){
 	if(myTour){
 		if(s<0){
 			fini = true;
+			$('.whenuplay').hide();
 			$.ajax({
 						type: 'GET',
 						url: 'checkWord.php',
@@ -190,6 +193,7 @@ function charger(){
 				if(!myTour && parseInt(data.tour)==parseInt(session) && session!=-1){
 					myTour = true;
 					fini = false;
+					$('.whenuplay').show();
 					$.ajax({
 						url : "model.php",
 						type : "GET"
