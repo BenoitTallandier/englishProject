@@ -1,7 +1,7 @@
 var fini = false;
 var myTour = false;
 var session = -1;
-
+var tourde = -1;
 
 $(window).load(function(){
 	session = $('#session').html();
@@ -89,71 +89,78 @@ $(window).ready(function(){
 
 
 function time(duree){
-	var compteur=document.getElementById('compteur'+session);
-	s=duree;
-	var base = 200;
-	if(myTour){
-		if(s<0){
-			fini = true;
-			$('.whenuplay').hide();
-			$.ajax({
-						type: 'GET',
-						url: 'checkWord.php',
-						data: "timeOut=true",
-						success : function(data){
-							if(data=="out"){
-								alert("out");
-								$('#looseModal').modal('toggle');
-								session=-1;
+	if(tourde != parseInt(session)){
+		myTour = false;
+	}
+	if(myTour==true){
+		var compteur=document.getElementById('compteur'+session);
+		s=duree;
+		var base = 200;
+		if(myTour){
+			if(s<0){
+				fini = true;
+				$('.whenuplay').hide();
+				$.ajax({
+							type: 'GET',
+							url: 'checkWord.php',
+							data: "timeOut=true",
+							success : function(data){
+								if(data=="last"){
+									alert("you win");
+									session = -1;
+								}
+								if(data=="out"){
+
+									session=-1;
+									$('#looseModal').modal('toggle');
+								}
 							}
-						}
 
-			});
-			fini = true;
-			myTour = false;
-			$('#word').animate({"margin-left":20},20,"swing");
-			$('#word').animate({"margin-left":0},20,"swing");
-			$('#word').animate({"margin-left":20},20,"swing");
-			$('#word').animate({"margin-left":0},20,"swing");
-			$('#word').css("border-color","red");
-			$('#word').css("color","red");
+				});
+				fini = true;
+				myTour = false;
+				$('#word').animate({"margin-left":20},20,"swing");
+				$('#word').animate({"margin-left":0},20,"swing");
+				$('#word').animate({"margin-left":20},20,"swing");
+				$('#word').animate({"margin-left":0},20,"swing");
+				$('#word').css("border-color","red");
+				$('#word').css("color","red");
 
-		}
-		else if(fini == false){
-			//compteur.innerHTML=Math.floor(s);
-			duree=duree-5;
-			if(duree >= 0.5*base){
-				if( ! $(".progress-bar").hasClass("progress-bar-succes") ){
-					$(".progress-bar").addClass("progress-bar-success");
-					$(".progress-bar").removeClass("progress-bar-danger");
-					$(".progress-bar").removeClass("progress-bar-warning");
-					$(".progress-bar").removeClass("progress-bar-infos");
-				}
 			}
-			else if(duree>=0.2*base){
-				if( ! $(".progress-bar").hasClass("progress-bar-warning") ){
-					$(".progress-bar").removeClass("progress-bar-success");
-					$(".progress-bar").removeClass("progress-bar-danger");
-					$(".progress-bar").addClass("progress-bar-warning");
-					$(".progress-bar").removeClass("progress-bar-infos");
+			else if(fini == false){
+				//compteur.innerHTML=Math.floor(s);
+				duree=duree-5;
+				if(duree >= 0.5*base){
+					if( ! $(".progress-bar").hasClass("progress-bar-succes") ){
+						$(".progress-bar").addClass("progress-bar-success");
+						$(".progress-bar").removeClass("progress-bar-danger");
+						$(".progress-bar").removeClass("progress-bar-warning");
+						$(".progress-bar").removeClass("progress-bar-infos");
+					}
 				}
-			}
-			else if(duree >= 0){
-				if( ! $(".progress-bar").hasClass("progress-bar-danger") ){
-					$(".progress-bar").removeClass("progress-bar-success");
-					$(".progress-bar").addClass("progress-bar-danger");
-					$(".progress-bar").removeClass("progress-bar-warning");
-					$(".progress-bar").removeClass("progress-bar-infos");
+				else if(duree>=0.2*base){
+					if( ! $(".progress-bar").hasClass("progress-bar-warning") ){
+						$(".progress-bar").removeClass("progress-bar-success");
+						$(".progress-bar").removeClass("progress-bar-danger");
+						$(".progress-bar").addClass("progress-bar-warning");
+						$(".progress-bar").removeClass("progress-bar-infos");
+					}
 				}
-			}
-			 $(".progress-bar").css("width", duree/2 + "%");
-			 $.ajax({
-				 type : 'GET',
-				 url : 'setTime.php',
-				 data : 'time='+duree
-			 });
-			if(session != -1){
-				window.setTimeout("time("+duree+");",499);
+				else if(duree >= 0){
+					if( ! $(".progress-bar").hasClass("progress-bar-danger") ){
+						$(".progress-bar").removeClass("progress-bar-success");
+						$(".progress-bar").addClass("progress-bar-danger");
+						$(".progress-bar").removeClass("progress-bar-warning");
+						$(".progress-bar").removeClass("progress-bar-infos");
+					}
+				}
+				 $(".progress-bar").css("width", duree/2 + "%");
+				 $.ajax({
+					 type : 'GET',
+					 url : 'setTime.php',
+					 data : 'time='+duree
+				 });
+				window.setTimeout("time("+duree+");",500);
 			}
 		}
 	}
@@ -183,22 +190,21 @@ function time(duree){
 
 }*/
 function charger(){
-
-    setTimeout( function(){
         // on récupère l'id le plus récent
 		$.ajax({
             url : "charge.php", // on passe l'id le plus récent au fichier de chargement
             type : 'GET',
             success : function(data){
+				tourde = parseInt(data.tour);
 				if(!myTour && parseInt(data.tour)==parseInt(session) && session!=-1){
 					myTour = true;
 					fini = false;
 					$('.whenuplay').show();
 					$.ajax({
-						url : "model.php",
-						type : "GET"
-					})
-					$('#word').prop('disabled', false);
+						url : 'model.php',
+						type : 'GET'
+					});
+					//$('#word').prop('disabled', false);
 					$.ajax({
 						type: 'GET',
 						url: 'checkWord.php',
@@ -206,7 +212,7 @@ function charger(){
 					});
 					time(200);
 				}
-				else if(parseInt(data.tour)!=parseInt(session)){
+				else if(!myTour){
 					if( ! $(".progress-bar").hasClass("progress-bar-infos") ){
 						$(".progress-bar").removeClass("progress-bar-success");
 						$(".progress-bar").removeClass("progress-bar-danger");
@@ -227,8 +233,7 @@ function charger(){
         		}
         	}
         });
-        charger();
-    }, 500);
+	window.setTimeout("charger();",500);
 }
 
 function pret(){

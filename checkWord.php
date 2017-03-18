@@ -7,13 +7,16 @@ if(isset($_GET['timeOut'])){
 	extract($l);
 	if($life>=1){
 		$life = $life - 1;
-		echo "UPDATE FROM user SET life=".$life." WHERE idUser=".$_SESSION['user'];
+		//echo "UPDATE FROM user SET life=".$life." WHERE idUser=".$_SESSION['user'];
 		mysqli_query($db,"UPDATE user SET life=".$life." WHERE idUser=".$_SESSION['user']);
-		if($life<=0){
+		if(count($_SESSION['joueur'])<=1 && $life<=0){
+			echo "last";
+		}
+		else if($life<=0){
 			echo "out";
 		}
+		mysqli_query($db,"UPDATE partie SET tour='".$_SESSION['joueur'][($_SESSION['index']+1)%count($_SESSION['joueur'])]."'");
 	}
-	mysqli_query($db,"UPDATE partie SET tour='".$_SESSION['joueur'][($_SESSION['index']+1)%count($_SESSION['joueur'])]."'");
 }
 elseif(isset($_GET['word'])){
 	mysqli_query($db,"UPDATE user SET proposition='".$_GET['word']."' WHERE idUser='".$_SESSION['user']."'");

@@ -1,15 +1,12 @@
 <?php
-	echo "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js' type='text/javascript'></script>
-			<script src='js/bootstrap.min.js' type='text/javascript'></script>
-			<link href='css/bootstrap.min.css rel='stylesheet'>
-			<link href='css/theme.css' rel='stylesheet'>";
+	//echos "<link href='css/bootstrap.min.css rel='stylesheet'><link href='css/theme.css' rel='stylesheet'>";
 	session_start();
 	include("DBConnection.php");
 	extract(mysqli_fetch_array(mysqli_query($db,"SELECT * FROM partie")));
 
 	$mod = mysqli_query($db,"SELECT model AS playingModel FROM user WHERE idUser=".$tour."");
-	if($mod){
-		extract(mysqli_fetch_array($mod));
+	if($l = mysqli_fetch_array($mod)){
+		extract($l);
 	}
 
 	$_SESSION['joueur'] = [];
@@ -26,8 +23,8 @@
 					mysqli_query($db,"UPDATE partie SET tour='".$idUser."'");
 				}
 			}
+			$compteur++;
 		}
-		$compteur++;
 	}
 
 	$r = mysqli_query($db,"SELECT * FROM user");
@@ -50,9 +47,14 @@
 					echo afficheJoueur($idUser,$tour,$name,$proposition,$life);
 				echo "</div>";
 				echo "<div class='col-sm-4 col-sm-offset-3' >";
-					if(isset($playingModel)){
-						echo "<h3>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
+				if(isset($playingModel)){
+					if($_SESSION['user']==$tour){
+						echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
 					}
+					else{
+						echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+					}
+				}
 				echo "</div>";
 				$line = mysqli_fetch_array($r);
 				extract($line);
@@ -73,7 +75,12 @@
 			echo "<div class='row spaceRow'>";
 				echo "<div class='col-sm-4 col-sm-offset-4'>";
 					if(isset($playingModel)){
-						echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						if($_SESSION['user']==$tour){
+							echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						}
+						else{
+							echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						}
 					}
 				echo "</div>";
 			echo "</div>";
