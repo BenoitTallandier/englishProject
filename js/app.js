@@ -101,11 +101,13 @@ function time(duree){
 			if(s<0){
 				fini = true;
 				$('.whenuplay').hide();
+				alert(model);
 				$.ajax({
 					type : 'GET',
 					url : 'solution.php',
 					data : 'm='+model,
 					success : function(data){
+						alert(data);
 						$('#solution').html(data);
 					}
 				});

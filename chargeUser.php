@@ -40,10 +40,10 @@
 			echo "</div>";
 			if(isset($playingModel)){
 				if($_SESSION['user']==$tour){
-					echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+					echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 				}
 				else{
-					echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+					echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 				}
 			}
 		}
@@ -84,10 +84,10 @@
 				echo "<div class='col-sm-4 col-sm-offset-4'>";
 					if(isset($playingModel)){
 						if($_SESSION['user']==$tour){
-							echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+							echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 						}
 						else{
-							echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+							echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 						}
 					}
 				echo "</div>";
@@ -125,7 +125,7 @@
 			echo "<div class='row spaceRow'>";
 				echo "<div class='col-sm-4 col-sm-offset-4'>";
 					if(isset($playingModel)){
-						echo "<h3>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						echo "<h3>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 					}
 				echo "</div>";
 			echo "</div>";
