@@ -106,11 +106,20 @@ function time(duree){
 							data: "timeOut=true",
 							success : function(data){
 								if(data=="last"){
-									alert("you win");
+									BootstrapDialog.show({
+										type: BootstrapDialog.TYPE_SUCCESS,
+										title : "Youhouuuu",
+										message : "You win "
+									});
+									$('#winModal').modal('toggle');
 									session = -1;
 								}
 								if(data=="out"){
-
+									BootstrapDialog.show({
+										type: BootstrapDialog.TYPE_DANGER,
+										title : "Error",
+										message : "You loose :'( "
+									});
 									session=-1;
 									$('#looseModal').modal('toggle');
 								}

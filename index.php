@@ -16,7 +16,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-dialog.css" rel="stylesheet">
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="js/bootstrap-dialog.js" type="text/javascript"></script>
 		<link href="css/theme.css" rel="stylesheet">
 		<script type="text/javascript" src='js/app.js'></script>
 	</head>
@@ -48,50 +50,20 @@
 				</div>
 			</div>
 			<div class="row playRow">
-				<div class="modal fade" id="looseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog danger" role="document">
-						<div class="modal-content">
-							<div class="modal-body">
-								<strong>Error!</strong> You loose this game
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog" role="document">
-				    	<div class="modal-content">
-				      		<div class="modal-body">
-								<label for="recipient-name" class="control-label">nickname:</label>
-								<input type='text' id='inputPseudo' class="form-control" placeholder="NickName">
-				      		</div>
-				      		<div class="modal-footer">
-				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        		<button type="button" id="buttonReady" class="btn btn-primary">Ready</button>
-				      		</div>
-				    	</div>
-				  	</div>
-				</div>
 				<div class="col-sm-4 col-sm-offset-4 col-centered">
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
 				</div>
 			</div>
+			<div  id='blockUser' class='row playRow'>
+			</div>
 			<div class="row playRow" style='margin-top:30px;'>
 				<div class="col-sm-3 col-centered whenuplay">
-					<div class='item'>
-						You have to find a word with &quot;<span id='model'style="font-weight:bold;font-size:20px;"></span>&quot;
-					</div>
 					<div class='item'>
 						<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
 					</div>
 				</div>
-			</div>
-			<div  id='blockUser' class='row playRow'>
-			</div>
 			</div>
 		</div>
 	</body>

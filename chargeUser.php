@@ -49,10 +49,10 @@
 				echo "<div class='col-sm-4 col-sm-offset-3' >";
 				if(isset($playingModel)){
 					if($_SESSION['user']==$tour){
-						echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 					}
 					else{
-						echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+						echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span></h3>";
 					}
 				}
 				echo "</div>";
@@ -173,13 +173,13 @@
 
 function afficheJoueur($idUser, $tour,$name,$proposition, $life){
 	if($life<=0){
-		$x = "<div id='user".$idUser."' class='col-sm-2 col-centered user'><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/dead.jpg'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:black;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
+		$x = "<div id='user".$idUser."' class='col-sm-10 col-centered user' ><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/dead.jpg'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:black;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
 	}
 	else if($idUser==$tour){
-		$x = "<div id='user".$idUser."' class='col-sm-2 col-centered user'><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/userRed.png'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:red;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
+		$x = "<div id='user".$idUser."' class='col-sm-10 col-centered user' ><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/userRed.png'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:red;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
 	}
 	else{
-		$x = "<div id='user".$idUser."' class='col-sm-2 col-centered user'><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/user.png'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:red;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
+		$x = "<div id='user".$idUser."' class='col-sm-10 col-centered user' ><div style='text-align:center;' id='name".$idUser."'>".$name."</div><img  width=100px src='img/user.png'><span><i class='glyphicon glyphicon-heart' aria-hidden='true' style='color:red;'>&times;".$life."</i></span></div><div id='proposition".$idUser."'>".$proposition."</div>";
 	}
 	return $x;
 }
