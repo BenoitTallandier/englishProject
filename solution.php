@@ -7,6 +7,8 @@
     $tmp = exec("python AnglaisBeuhBeuh.py $mot");
     parse_str($tmp,$output);
     echo "word : ".$mot."</br>";
-    echo "translation : ".$output['translation']."</br>";
-    echo "definition : ".$output['definition']."</br>";
+    if(!empty($output['translation']) && !empty($output['translation'])){
+        echo "translation : ".$output['translation']."</br>";
+        echo "definition : ".$output['definition']."</br>";
+    }
 ?>
