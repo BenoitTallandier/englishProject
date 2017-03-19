@@ -2,7 +2,7 @@
     include("DBConnection.php");
 	session_start();
     extract(mysqli_fetch_array(mysqli_query($db,"SELECT model FROM user WHERE idUSer=".$_SESSION['user'])));
-    $r = mysqli_query($db,"SELECT mot FROM vocabulaire WHERE mot LIKE '%".$model."%' ORDER BY RAND");
+    $r = mysqli_query($db,"SELECT mot FROM vocabulaire WHERE mot LIKE '%".$model."%' ORDER BY RAN()");
     extract(mysqli_fetch_array($r));
     $tmp = exec("python AnglaisBeuhBeuh.py $mot");
     parse_str($tmp,$output);
