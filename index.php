@@ -59,7 +59,7 @@
 			<div  id='blockUser' class='row playRow'>
 			</div>
 			<div class="row playRow" style='margin-top:30px;'>
-				<div class="col-sm-3 col-centered whenuplay">
+				<div class="col-sm-3 col-centered">
 					<div class='item'>
 						<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
 						<div id='solution'></div>
