@@ -18,12 +18,10 @@
 	<?php
 		$r = mysqli_query($db,"SELECT * FROM user");
 		$nbUser = mysqli_num_rows($r);
-		if(nbUser>4){
-			echo "<script type='text/javascript' >BootstrapDialog.show({
-				type: BootstrapDialog.TYPE_DANGER,
-				title : 'Error',
-				message : 'the game is full '
-			});</script>";
+		if($nbUser>=4){
+			echo "<body><div class='container' ><div class='row'>";
+				echo "<script type='text/javascript'>BootstrapDialog.show({type: BootstrapDialog.TYPE_DANGER,title : 'Error',message : 'the game is full '});</script>";
+			echo "</div></div></body>";
 		}
 		else{
 			mysqli_query($db,"INSERT INTO user (name,ready,proposition,model,life) VALUES ('titi',0,'','',3)");
