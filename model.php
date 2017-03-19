@@ -10,7 +10,7 @@
 		$_SESSION['model'] = substr($mot,$nb,3);
 		$query = "UPDATE user SET model='".$_SESSION['model']."' WHERE idUser='".$_SESSION['user']."'";
 		mysqli_query($db,$query);
-		echo $query;
+		echo $_SESSION['model'];
 	}
-	
+
 ?>

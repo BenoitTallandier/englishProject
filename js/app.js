@@ -104,7 +104,7 @@ function time(duree){
 				$.ajax({
 					type : 'GET',
 					url : 'solution.php',
-					data : 'm='+$('#model').html(),
+					data : 'm='+model,
 					success : function(data){
 						$('#solution').html(data);
 					}
@@ -221,7 +221,10 @@ function charger(){
 					$('.whenuplay').show();
 					$.ajax({
 						url : 'model.php',
-						type : 'GET'
+						type : 'GET',
+						sucess : function(data){
+							model = data;
+						}
 					});
 					//$('#word').prop('disabled', false);
 					$.ajax({
