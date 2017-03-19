@@ -62,13 +62,13 @@
 				<div class="col-sm-3 col-centered whenuplay">
 					<div class='item'>
 						<input type="text" id='word' style="width:150px" class="input-sm form-control" placeholder="Mot">
+						<div id='solution'></div>
 					</div>
 				</div>
 			</div>
 			<div class="row playRow">
+			</div>
 					<div class='item'>
-						<div id='solution'></div>						
-					</div>
 			</div>
 
 		</div>
