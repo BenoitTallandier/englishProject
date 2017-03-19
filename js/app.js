@@ -2,7 +2,6 @@ var fini = false;
 var myTour = false;
 var session = -1;
 var tourde = -1;
-var model = "";
 
 $(window).load(function(){
 	session = $('#session').html();
@@ -101,13 +100,10 @@ function time(duree){
 			if(s<0){
 				fini = true;
 				$('.whenuplay').hide();
-				alert(model);
 				$.ajax({
 					type : 'GET',
 					url : 'solution.php',
-					data : 'm='+model,
 					success : function(data){
-						alert(data);
 						$('#solution').html(data);
 					}
 				});
@@ -223,10 +219,7 @@ function charger(){
 					$('.whenuplay').show();
 					$.ajax({
 						url : 'model.php',
-						type : 'GET',
-						sucess : function(data){
-							model = data;
-						}
+						type : 'GET'
 					});
 					//$('#word').prop('disabled', false);
 					$.ajax({
