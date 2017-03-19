@@ -38,6 +38,14 @@
 			echo "<div class='col-sm-2 col-centered'>";
 				echo afficheJoueur($idUser,$tour,$name,$proposition,$life);
 			echo "</div>";
+			if(isset($playingModel)){
+				if($_SESSION['user']==$tour){
+					echo "<h3 style='color:blue;'>You have to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+				}
+				else{
+					echo "<h3 style='color:blue;'>He has to find a word with : <span style='font-weight:bold;'>".$playingModel."</span>11</h3>";
+				}
+			}
 		}
 		if($total==2){
 			echo "<div class='row' >";

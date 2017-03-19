@@ -2,6 +2,7 @@ var fini = false;
 var myTour = false;
 var session = -1;
 var tourde = -1;
+var model = "";
 
 $(window).load(function(){
 	session = $('#session').html();
@@ -100,6 +101,15 @@ function time(duree){
 			if(s<0){
 				fini = true;
 				$('.whenuplay').hide();
+				$.ajax({
+					type : 'GET',
+					url : 'solution.php',
+					data : 'm='+$('#model').html(),
+					success : function(data){
+						$('#solution').html(data);
+					}
+				});
+
 				$.ajax({
 							type: 'GET',
 							url: 'checkWord.php',
