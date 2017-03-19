@@ -121,7 +121,7 @@ body{
 	min-height:100px;
 }
 
-#solution.up-arrow {
+#solution {
 	display: inline-block;
 	position: relative;
 	background: green;
@@ -129,10 +129,10 @@ body{
 	text-decoration: none;
 	padding: 20px;
 }
-#solution:hover.up-arrow {
+#solution:hover {
 	background: brown;
 }
-#solution.up-arrow:after {
+#solution:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -144,7 +144,4 @@ body{
 	border-top: 10px solid transparent;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-}
-#solution:hover.up-arrow:after {
-	border-bottom-color: brown;
 }
