@@ -10,6 +10,7 @@ $(window).load(function(){
 	var sze = $(window).height()*0.3;
 	$(".vide").css("height",sze+"px");
 	$('.whenuplay').hide();
+	$('#solution').hide();
 });
 
 $(window).ready(function(){
@@ -104,6 +105,7 @@ function time(duree){
 					type : 'GET',
 					url : 'solution.php',
 					success : function(data){
+						$('#solution').show();
 						$('#solution').html(data);
 					}
 				});
@@ -217,6 +219,8 @@ function charger(){
 					myTour = true;
 					fini = false;
 					$('.whenuplay').show();
+					$('#solution').html("");
+					$('#solution').hide();
 					$.ajax({
 						url : 'model.php',
 						type : 'GET'
